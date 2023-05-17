@@ -4,7 +4,7 @@
             <h2>Administrator</h2>
             <div class="ml-20 space-x-3 text-blue-500">
                 <a href="{{route('show-usr')}}">Daftar User</a>
-                <a href="#">Daftar Artikel</a>
+                <a href="{{route('adm-showArt')}}">Daftar Artikel</a>
             </div>
         </div>
     </x-slot>

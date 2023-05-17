@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class,'homepage']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/home',[HomeController::class,'index']);
 
-Route::get('/isi-artikel',[HomeController::class,'showArticle'])->name('showArt');
+Route::get('/isi-artikel/{id}',[HomeController::class,'showArticle']);
 
 Route::get('/lihat-user',[AdminController::class,'showUsers'])->name('show-usr');
 
@@ -40,6 +40,13 @@ Route::get('/tulis-artikel',[PenulisController::class,'tambahArtikel'])->name('t
 Route::get('/kelola-artikel',[PenulisController::class,'manageArticle'])->name('man-art');
 
 Route::post('/post',[PenulisController::class,'postArticle']);
+
+Route::get('/lihat-artikel',[AdminController::class,'showArticles'])->name('adm-showArt');
+Route::get('/lihat-artikel/isi-artikel',[AdminController::class,'lihatisiArtikel'])->name('isi-art');
+
+Route::get('/kelola-artikel/edit-artikel/{id}',[PenulisController::class,'editArticle']);
+Route::post('/kelola-artikel/konfirm-edit/{id}',[PenulisController::class,'updateArtikel']);
+Route::get('/kelola-artikel/hapus-artikel/{id}',[PenulisController::class,'hapusArtikel']);
 
 Route::get('/logout',[HomeController::class,'logout'])->name('logout');
 

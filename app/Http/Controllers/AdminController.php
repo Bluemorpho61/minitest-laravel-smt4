@@ -20,4 +20,8 @@ class AdminController extends Controller
             ->join('users', 'users.id', '=', 'articles.user_id')->get();
         return view('admin.submenu.lihatartikel', ['articles' => $articles]);
     }
+
+    public function lihatisiArtikel(){
+        return view('admin.submenu.isi-artikel');
+    }
 }

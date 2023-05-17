@@ -13,7 +13,7 @@
     <script>
         function deleteWarning(event) {
             event.preventDefault();
-            if (confirm('Apakah anda yakin untuk menghapus data ini?')){
+            if (confirm('Apakah anda yakin untuk menghapus data ini?')) {
                 document.getElementById('hapusArtikel').submit
             }
         }
@@ -59,7 +59,8 @@
                                     <td class="px-4 space-x-3 py-4">
                                         <a href="/kelola-artikel/edit-artikel/{{$artikel->id}}"
                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        <a href="#" data-modal-target="popup-modal" data-modal-toggle="popup-modal"  class="font-medium text-red-600 dark:text-red-500 hover:underline" type="button" onclick="deleteWarning()" >Hapus</a>
+                                        <a href="/kelola-artikel/hapus-artikel/{{$artikel->id}}"
+                                           class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
 
                                     </td>
                                 </tr>

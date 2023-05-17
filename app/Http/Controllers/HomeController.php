@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Articles;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -21,9 +22,10 @@ class HomeController extends Controller
         }
     }
 
-    public function showArticle()
+    public function showArticle($id)
     {
-        return view('subcontent.isi-artikel');
+        $isiKonten =Articles::query()->find($id);
+        return view('subcontent.isi-artikel', compact('isiKonten'));
     }
 
     public function logout()
@@ -35,7 +37,7 @@ class HomeController extends Controller
     public function homepage()
     {
         $konten = DB::table('articles')->join('users', 'users.id', '=', 'articles.user_id')
-            ->select('articles.judul_artikel AS judul', 'users.name AS pengarang','articles.isi_artikel AS isi','articles.tanggal AS tanggal')->get();
+            ->select('articles.id','articles.judul_artikel AS judul', 'users.name AS pengarang','articles.isi_artikel AS isi','articles.tanggal AS tanggal')->get();
         return view('landing',['konten'=>$konten]);
     }
 }
